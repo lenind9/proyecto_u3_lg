@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,9 +29,15 @@ public class Hotel {
 	@Column(name = "hote_direccion")
 	private String direccion;
 	
-	@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL) //hotel viene de hotel de la clase Habitacion
+	//@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL, fetch = FetchType.EAGER) //EAGER carga por defecto pero muy costosa/pesada
+	@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL, fetch = FetchType.LAZY) //hotel viene de hotel de la clase Habitacion, cascade hace que se inserten todos los hijos, fetch hace que se consulten todos los hijos
 	private List<Habitacion> habitaciones;
 	
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + "]";
+	}
+
 	//SET y GET
 	public Integer getId() {
 		return id;

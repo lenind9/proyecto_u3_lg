@@ -47,13 +47,13 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public List<Hotel> buscarHotelJoinWhere(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hotelRespository.buscarHotelJoinWhere(tipoHabitacion);
 	}
 
 	@Override
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hotelRespository.buscarHotelJoinFetch(tipoHabitacion);
 	}
 	
 }
