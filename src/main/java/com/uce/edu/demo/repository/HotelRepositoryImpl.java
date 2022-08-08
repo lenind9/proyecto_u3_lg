@@ -24,7 +24,7 @@ public class HotelRepositoryImpl implements IHotelRespository {
 		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		
-		//Traer las habitaciones bajo demanda, usar un metodo como size para tener la garantia de que se traen las habitaciones
+		// LAZY: Traer las habitaciones bajo demanda, usar un metodo como size para tener la garantia de que se traen las habitaciones
 		List<Hotel> hoteles = myQuery.getResultList();
 		for(Hotel h : hoteles) {
 			h.getHabitaciones().size();
