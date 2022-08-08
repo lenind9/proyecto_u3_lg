@@ -30,7 +30,8 @@ public class Factura {
 	@Column(name = "fact_numero")
 	private String numero;
 	
-	@OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
+	//@OneToMany(mappedBy = "factura", cascade  = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "factura", cascade  = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleFactura> detalles;
 	
 	//SET y GET

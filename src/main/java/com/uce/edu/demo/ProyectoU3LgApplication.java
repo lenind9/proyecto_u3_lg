@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.DetalleFactura;
 import com.uce.edu.demo.repository.modelo.Factura;
 import com.uce.edu.demo.service.IFacturaService;
 
@@ -27,40 +28,30 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		//Inner Join
-		LOG.info("INNER JOIN");
-		List<Factura> listaFacturas = this.facturaService.buscarFacturaInnerJoin(6);
+		
+		LOG.info("RELACIONAMIENTO WHERE");
+		List<Factura> listaFacturas = this.facturaService.buscarFacturaJoinWhere(8);
 		for(Factura f : listaFacturas){
 			LOG.info("Factura: " + f.getFecha() + " numero: " + f.getNumero());
 		}
 		
-		List<Factura> listaFacturas2 = this.facturaService.buscarFacturaInnerJoin();
+		LOG.info("INNER JOIN EAGER/LAZY");
+		List<Factura> listaFacturas2 = this.facturaService.buscarFacturaInnerJoin(8);
 		for(Factura f : listaFacturas2){
 			LOG.info("Factura 2: " + f.getFecha() + " numero: " + f.getNumero());
+			for (DetalleFactura df : f.getDetalles()) {
+				LOG.info("Detalle 2: " + df);
+			}
 		}
 		
-		//Left Join
-		LOG.info("LEFT JOIN");
-		List<Factura> listaFacturasLeft = this.facturaService.buscarFacturaOuterLeftJoin(6);
-		for(Factura f : listaFacturasLeft){
-			LOG.info("Factura: " + f.getFecha() + " numero: " + f.getNumero());
-		}
-		
-		List<Factura> listaFacturasLeft2 = this.facturaService.buscarFacturaOuterLeftJoin();
-		for(Factura f : listaFacturasLeft2){
-			LOG.info("Factura 2: " + f.getFecha() + " numero: " + f.getNumero());
-		}
-		
-		//Right Join
-		LOG.info("RIGHT JOIN");
-		List<Factura> listaFacturasRight = this.facturaService.buscarFacturaOuterRightJoin(6);
-		for(Factura f : listaFacturasRight){
-			LOG.info("Factura: " + f.getFecha() + " numero: " + f.getNumero());
-		}
-		
-		List<Factura> listaFacturasRight2 = this.facturaService.buscarFacturaOuterRightJoin();
-		for(Factura f : listaFacturasRight2){
-			LOG.info("Factura 2: " + f.getFecha() + " numero: " + f.getNumero());
+		LOG.info("JOIN FETCH");
+		List<Factura> listaFacturas3 = this.facturaService.buscarFacturaJoinFetch(8);
+		for(Factura f : listaFacturas3){
+			LOG.info("Factura 3: " + f.getFecha() + " numero: " + f.getNumero());
+			for (DetalleFactura df : f.getDetalles()) {
+				LOG.info("Detalle 3: " + df);
+			}
+
 		}
 		
 	}
