@@ -1,6 +1,6 @@
 package com.uce.edu.demo;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,9 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.DetalleFactura;
-import com.uce.edu.demo.repository.modelo.Factura;
-import com.uce.edu.demo.service.IFacturaService;
+import com.uce.edu.demo.service.ITransferenciaService;
 
 @SpringBootApplication
 public class ProyectoU3LgApplication implements CommandLineRunner {
@@ -19,7 +17,7 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 	private static final Logger LOG = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private IFacturaService facturaService;
+	private ITransferenciaService transferenciaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3LgApplication.class, args);
@@ -29,30 +27,7 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		LOG.info("RELACIONAMIENTO WHERE");
-		List<Factura> listaFacturas = this.facturaService.buscarFacturaJoinWhere(8);
-		for(Factura f : listaFacturas){
-			LOG.info("Factura: " + f.getFecha() + " numero: " + f.getNumero());
-		}
-		
-		LOG.info("INNER JOIN EAGER/LAZY");
-		List<Factura> listaFacturas2 = this.facturaService.buscarFacturaInnerJoin(8);
-		for(Factura f : listaFacturas2){
-			LOG.info("Factura 2: " + f.getFecha() + " numero: " + f.getNumero());
-			for (DetalleFactura df : f.getDetalles()) {
-				LOG.info("Detalle 2: " + df);
-			}
-		}
-		
-		LOG.info("JOIN FETCH");
-		List<Factura> listaFacturas3 = this.facturaService.buscarFacturaJoinFetch(8);
-		for(Factura f : listaFacturas3){
-			LOG.info("Factura 3: " + f.getFecha() + " numero: " + f.getNumero());
-			for (DetalleFactura df : f.getDetalles()) {
-				LOG.info("Detalle 3: " + df);
-			}
-
-		}
+		this.transferenciaService.realizarTransferenciaFachada("8748546", "1564564", new BigDecimal(1));
 		
 	}
 

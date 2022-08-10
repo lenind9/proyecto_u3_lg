@@ -7,14 +7,19 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.uce.edu.demo.repository.modelo.Hotel;
 
 @Repository
-@Transactional
+@Transactional //todos los metodos tienen transaccion required por defecto si no se especifica lo contrario
 public class HotelRepositoryImpl implements IHotelRespository {
-
+	
+	private static final Logger LOG = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -73,8 +78,10 @@ public class HotelRepositoryImpl implements IHotelRespository {
 	}
 
 	@Override
+	//@Transactional(value = TxType.MANDATORY) //alcance o que tipo de transaccion va a manejar mi metodo
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
+		LOG.info("Transaccion activa repository: " + TransactionSynchronizationManager.isActualTransactionActive());
 		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
