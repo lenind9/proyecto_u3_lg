@@ -23,6 +23,12 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 	private EntityManager entityManager;
 	
 	@Override
+	public void insertarCuentaBancaria(CuentaBancaria cuentaBancaria) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(cuentaBancaria);
+	}
+	
+	@Override
 	@Transactional(value = TxType.MANDATORY)
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub

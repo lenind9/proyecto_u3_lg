@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "hotel")
 public class Hotel {
@@ -29,8 +30,8 @@ public class Hotel {
 	@Column(name = "hote_direccion")
 	private String direccion;
 	
-	//@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL, fetch = FetchType.EAGER) //EAGER carga por defecto pero muy costosa/pesada
-	@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL, fetch = FetchType.LAZY) //hotel viene de hotel de la clase Habitacion, cascade hace que se inserten todos los hijos, fetch hace que se consulten todos los hijos
+	@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL, fetch = FetchType.EAGER) //EAGER carga por defecto pero muy costosa/pesada
+	//@OneToMany(mappedBy = "hotel", cascade  = CascadeType.ALL, fetch = FetchType.LAZY) //hotel viene de hotel de la clase Habitacion, cascade hace que se inserten todos los hijos, fetch hace que se consulten todos los hijos
 	private List<Habitacion> habitaciones;
 	
 	@Override

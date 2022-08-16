@@ -5,7 +5,10 @@ import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
+import javax.transaction.TransactionalException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +20,18 @@ import com.uce.edu.demo.repository.modelo.Transferencia;
 @Service
 public class TransferenciaServiceImpl implements ITransferenciaService {
 	
+	private static final Logger LOG = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	
 	@Autowired
 	private ICuentaBancariaRepository cuentaBancariaRepository;
 	
 	@Autowired
 	private ITransferenciaRepository transferenciaRepository;
 	
-	@Override
+	@Autowired
+	private ICuentaBancariaService cuentaBancariaService;
+	
+	/*@Override
 	@Transactional(value = TxType.REQUIRED)
 	public void realizarTransferencia(String numeroCtaOrigen, String numeroCtaDestino, BigDecimal monto) { //begin
 		//1. Buscar la cuenta origen para obtener el saldo
@@ -49,13 +57,46 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		trans.setCuentaOrigen(ctaOrigen);
 		trans.setCuentaDestino(ctaDestino);
 		this.transferenciaRepository.insertar(trans);
-	} //commit
+	} //commit*/
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
 	public void realizarTransferenciaFachada(String ctaOrigen, String ctaDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
 		this.realizarTransferencia(ctaOrigen, ctaDestino, monto);
+	}
+
+	@Override
+	@Transactional(value=TxType.REQUIRED)
+	public boolean realizarTransferencia(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		try {
+
+			CuentaBancaria cuBaOrigen = this.cuentaBancariaService.buscarPorNumero(numeroCuentaOrigen);
+			CuentaBancaria cuBaDestino = this.cuentaBancariaService.buscarPorNumero(numeroCuentaDestino);
+
+			cuBaOrigen.setSaldo(cuBaOrigen.getSaldo().subtract(monto));//restamos el monto de la cuenta origen
+
+			cuBaDestino.setSaldo(cuBaDestino.getSaldo().add(monto));//sumamos el monto a la cuenta destino
+
+			Transferencia transferencia = new Transferencia();
+			transferencia.setCuentaOrigen(cuBaOrigen);
+			transferencia.setCuentaDestino(cuBaDestino);
+			transferencia.setMonto(monto);
+			transferencia.setFecha(LocalDateTime.now());
+			transferencia.setCuentaOrigen(cuBaOrigen);
+			transferencia.setCuentaDestino(cuBaDestino);
+
+			this.cuentaBancariaService.actualizar(cuBaDestino);
+			this.cuentaBancariaService.actualizar(cuBaOrigen);
+
+			this.transferenciaRepository.insertar(transferencia);
+			flag = true;
+		}catch (TransactionalException ex){
+			LOG.info(ex.getMessage());
+		}
+		return flag;
 	}
 
 }

@@ -22,6 +22,20 @@ public class HotelRepositoryImpl implements IHotelRespository {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Override
+	public void insertarHotel(Hotel h) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(h);
+	}
+	
+	@Override
+	public Hotel buscarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h WHERE h.id = :datoId", Hotel.class);
+		myQuery.setParameter("datoId", id);
+		return myQuery.getSingleResult();
+	}
 
 	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
@@ -86,5 +100,5 @@ public class HotelRepositoryImpl implements IHotelRespository {
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}
-
+	
 }

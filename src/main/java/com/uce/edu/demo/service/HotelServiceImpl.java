@@ -20,6 +20,25 @@ public class HotelServiceImpl implements IHotelService {
 	private IHotelRespository hotelRespository;
 	
 	@Override
+	public boolean insertarHotel(Hotel h) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		try {
+			this.hotelRespository.insertarHotel(h);
+			flag = true;
+		} catch(Exception e) {
+			LOG.info(e.getMessage());
+		}
+		return flag;
+	}
+	
+	@Override
+	public Hotel buscarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		return this.hotelRespository.buscarPorId(id);
+	}
+	
+	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
 		// TODO Auto-generated method stub
 		return this.hotelRespository.buscarHotelInnerJoin(tipoHabitacion);

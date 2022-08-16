@@ -5,6 +5,9 @@ import java.util.List;
 import com.uce.edu.demo.repository.modelo.Hotel;
 
 public interface IHotelRespository {
+	public void insertarHotel(Hotel h);
+	public Hotel buscarPorId(Integer id);
+	
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion);
 	public List<Hotel> buscarHotelInnerJoin();
 	
