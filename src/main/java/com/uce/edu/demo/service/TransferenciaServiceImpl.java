@@ -31,7 +31,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	@Autowired
 	private ICuentaBancariaService cuentaBancariaService;
 	
-	/*@Override
+	@Override
 	@Transactional(value = TxType.REQUIRED)
 	public void realizarTransferencia(String numeroCtaOrigen, String numeroCtaDestino, BigDecimal monto) { //begin
 		//1. Buscar la cuenta origen para obtener el saldo
@@ -57,7 +57,16 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		trans.setCuentaOrigen(ctaOrigen);
 		trans.setCuentaDestino(ctaDestino);
 		this.transferenciaRepository.insertar(trans);
-	} //commit*/
+		
+		/*if(ctaOrigen.getTipo().equals("Ahorros")) {
+			throw new RuntimeException();
+		}*/
+		
+		if(monto.compareTo(saldoOrigen) > 0) { //if (monto > saldoOrigen)
+			throw new RuntimeException(); //ejecuta rollback
+		}
+		
+	} //commit
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
@@ -66,7 +75,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		this.realizarTransferencia(ctaOrigen, ctaDestino, monto);
 	}
 
-	@Override
+	/*@Override
 	@Transactional(value=TxType.REQUIRED)
 	public boolean realizarTransferencia(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
@@ -97,6 +106,6 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 			LOG.info(ex.getMessage());
 		}
 		return flag;
-	}
+	}*/
 
 }

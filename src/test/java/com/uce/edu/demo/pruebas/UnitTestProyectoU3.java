@@ -60,7 +60,7 @@ public class UnitTestProyectoU3 {
 		assertTrue(this.hotelService.insertarHotel(h1));
 	}
 	
-	//@Test
+	@Test
 	public void testHabitaciones() {
 
 		Hotel h1 = this.hotelRespository.buscarPorId(1);
@@ -92,7 +92,7 @@ public class UnitTestProyectoU3 {
 
 	}
 
-	//@Test
+	@Test
 	public void insertarCuentabancaria() {
 		CuentaBancaria cb = new CuentaBancaria();
 		cb.setNumero("ASD-120014");
@@ -109,7 +109,7 @@ public class UnitTestProyectoU3 {
 	}
 	
 	
-	//@BeforeEach
+	@BeforeEach
 	public void cuentas() {
 		CuentaBancaria cb1 = this.cuentaBancariaService.buscarPorNumero("8748546");
 		CuentaBancaria cb2 = this.cuentaBancariaService.buscarPorNumero("1564564");
@@ -119,14 +119,14 @@ public class UnitTestProyectoU3 {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testTransferencia() {	
 		
-		assertTrue(this.transferenciaService.realizarTransferencia("8748546", "1564564", new BigDecimal(10)));
+		//assertTrue(this.transferenciaService.realizarTransferencia("8748546", "1564564", new BigDecimal(10)));
 		
 	}
 
-	//@AfterEach
+	@AfterEach
 	public void verificarSaldos() {
 		CuentaBancaria cb1 = this.cuentaBancariaService.buscarPorNumero("8748546");
 		CuentaBancaria cb2 = this.cuentaBancariaService.buscarPorNumero("1564564");

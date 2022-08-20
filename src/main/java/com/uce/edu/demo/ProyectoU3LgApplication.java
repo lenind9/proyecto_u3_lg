@@ -27,7 +27,7 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		//this.transferenciaService.realizarTransferenciaFachada("8748546", "1564564", new BigDecimal(1));
+		this.transferenciaService.realizarTransferenciaFachada("8748546", "1564564", new BigDecimal(2));
 		
 	}
 
