@@ -1,6 +1,7 @@
 package com.uce.edu.demo;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.service.ITransferenciaService;
+import com.uce.edu.demo.supermaxi.service.IGestorComprasService;
 
 @SpringBootApplication
 public class ProyectoU3LgApplication implements CommandLineRunner {
@@ -17,7 +18,7 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 	private static final Logger LOG = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private ITransferenciaService transferenciaService;
+	private IGestorComprasService gestorComprasService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3LgApplication.class, args);
@@ -26,9 +27,10 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		this.transferenciaService.realizarTransferenciaFachada("8748546", "1564564", new BigDecimal(2));
-		
+		List<String> codigoBarras = new ArrayList<String>();
+		codigoBarras.add("651");
+		codigoBarras.add("741");
+		this.gestorComprasService.crearFactura("1724116325", "15420", codigoBarras);
 	}
 
 }
