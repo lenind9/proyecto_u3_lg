@@ -26,11 +26,14 @@ public class ProyectoU3LgApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		LOG.info("HOLA MUNDO");
+		
 		// TODO Auto-generated method stub
-		List<String> codigoBarras = new ArrayList<String>();
+		/*List<String> codigoBarras = new ArrayList<String>();
 		codigoBarras.add("651");
 		codigoBarras.add("741");
-		this.gestorComprasService.crearFactura("1724116325", "15420", codigoBarras);
+		this.gestorComprasService.crearFactura("1724116325", "15420", codigoBarras);*/
 	}
 
 }

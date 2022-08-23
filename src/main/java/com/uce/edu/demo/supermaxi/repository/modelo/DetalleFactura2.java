@@ -30,7 +30,7 @@ public class DetalleFactura2 {
 	
 	@ManyToOne
 	@JoinColumn(name = "deta_fact_id")
-	private Factura2 factura;
+	private Factura2 facturas;
 	
 	@ManyToOne
 	@JoinColumn(name = "deta_prod_id")
@@ -67,11 +67,11 @@ public class DetalleFactura2 {
 	}
 
 	public Factura2 getFactura() {
-		return factura;
+		return facturas;
 	}
 
 	public void setFactura(Factura2 factura) {
-		this.factura = factura;
+		this.facturas = factura;
 	}
 
 	public Producto getProducto() {

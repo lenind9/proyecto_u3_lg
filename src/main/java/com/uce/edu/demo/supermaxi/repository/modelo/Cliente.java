@@ -27,7 +27,7 @@ public class Cliente {
 	@Column(name = "clie_nombre")
 	private String nombre;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "clientes")
 	private List<Factura2> facturas;
 	
 	//SET y GET
