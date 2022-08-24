@@ -32,7 +32,7 @@ public class Factura2 {
 	@Column(name = "fact_numero")
 	private String numero;
 	
-	@OneToMany(mappedBy = "facturas", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "facturas", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleFactura2> detalles;
 	
 	@ManyToOne
