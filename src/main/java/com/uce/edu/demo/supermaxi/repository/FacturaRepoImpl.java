@@ -8,7 +8,7 @@ import javax.transaction.Transactional.TxType;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.supermaxi.repository.modelo.Factura2;
+import com.uce.edu.demo.supermaxi.repository.modelo.Factura;
 
 @Repository
 @Transactional
@@ -19,20 +19,20 @@ public class FacturaRepoImpl implements IFacturaRepository {
 	
 	@Override
 	@Transactional(value = TxType.REQUIRED)
-	public void insertar(Factura2 factura) {
+	public void insertar(Factura factura) {
 		// TODO Auto-generated method stub
 		this.entityManager.persist(factura);
 	}
 
 	@Override
-	public Factura2 buscar(Integer id) {
+	public Factura buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.entityManager.find(Factura2.class, id);
+		return this.entityManager.find(Factura.class, id);
 	}
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
-	public void actualizar(Factura2 factura) {
+	public void actualizar(Factura factura) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(factura);
 	}
@@ -45,9 +45,9 @@ public class FacturaRepoImpl implements IFacturaRepository {
 
 	@Override
 	@Transactional(value = TxType.NOT_SUPPORTED)
-	public Factura2 buscarPorNumero(String numero) {
+	public Factura buscarPorNumero(String numero) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura2> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f WHERE f.numero = :datoNumero", Factura2.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f WHERE f.numero = :datoNumero", Factura.class);
 		myQuery.setParameter("datoNumero", numero);
 		return myQuery.getSingleResult();
 	}

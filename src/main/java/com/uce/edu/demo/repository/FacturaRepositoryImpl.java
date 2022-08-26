@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.repository.modelo.Factura;
+import com.uce.edu.demo.repository.modelo.Factura1;
 
 @Repository
 @Transactional
@@ -19,15 +19,15 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Factura> buscarFacturaInnerJoin(Integer cantidadDetalle) {
+	public List<Factura1> buscarFacturaInnerJoin(Integer cantidadDetalle) {
 		// TODO Auto-generated method stub
 		//SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo = :tipoHabitacion
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles de WHERE de.cantidad = :cantidadDetalle", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles de WHERE de.cantidad = :cantidadDetalle", Factura1.class);
 		myQuery.setParameter("cantidadDetalle", cantidadDetalle);
 		
 		//Bajo demanda
-		List<Factura> facturas = myQuery.getResultList();
-		for(Factura f : facturas) {
+		List<Factura1> facturas = myQuery.getResultList();
+		for(Factura1 f : facturas) {
 			f.getDetalles().size();
 		}
 		
@@ -35,54 +35,54 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	}
 	
 	@Override
-	public List<Factura> buscarFacturaInnerJoin() {
+	public List<Factura1> buscarFacturaInnerJoin() {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles de", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles de", Factura1.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
-	public List<Factura> buscarFacturaOuterLeftJoin(Integer cantidadDetalle) {
+	public List<Factura1> buscarFacturaOuterLeftJoin(Integer cantidadDetalle) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalles de WHERE de.cantidad >= :cantidadDetalle", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalles de WHERE de.cantidad >= :cantidadDetalle", Factura1.class);
 		myQuery.setParameter("cantidadDetalle", cantidadDetalle);
 		return myQuery.getResultList();
 	}
 	
 	@Override
-	public List<Factura> buscarFacturaOuterLeftJoin() {
+	public List<Factura1> buscarFacturaOuterLeftJoin() {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalles de", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalles de", Factura1.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
-	public List<Factura> buscarFacturaOuterRightJoin(Integer cantidadDetalle) {
+	public List<Factura1> buscarFacturaOuterRightJoin(Integer cantidadDetalle) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalles de WHERE de.cantidad >= :cantidadDetalle", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalles de WHERE de.cantidad >= :cantidadDetalle", Factura1.class);
 		myQuery.setParameter("cantidadDetalle", cantidadDetalle);
 		return myQuery.getResultList();
 	}
 	
 	@Override
-	public List<Factura> buscarFacturaOuterRightJoin() {
+	public List<Factura1> buscarFacturaOuterRightJoin() {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalles de", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalles de", Factura1.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
-	public List<Factura> buscarFacturaJoinWhere(Integer cantidadDetalle) {
+	public List<Factura1> buscarFacturaJoinWhere(Integer cantidadDetalle) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f, DetalleFactura df WHERE f = df.factura AND df.cantidad = :cantidadDetalle", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f, DetalleFactura df WHERE f = df.factura AND df.cantidad = :cantidadDetalle", Factura1.class);
 		myQuery.setParameter("cantidadDetalle", cantidadDetalle);
 		return myQuery.getResultList();
 	}
 
 	@Override
-	public List<Factura> buscarFacturaJoinFetch(Integer cantidadDetalle) {
+	public List<Factura1> buscarFacturaJoinFetch(Integer cantidadDetalle) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalles de WHERE de.cantidad = :cantidadDetalle", Factura.class);
+		TypedQuery<Factura1> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalles de WHERE de.cantidad = :cantidadDetalle", Factura1.class);
 		myQuery.setParameter("cantidadDetalle", cantidadDetalle);
 		return myQuery.getResultList();
 	}

@@ -2,16 +2,16 @@ package com.uce.edu.demo.repository;
 
 import java.util.List;
 
-import com.uce.edu.demo.repository.modelo.Factura;
+import com.uce.edu.demo.repository.modelo.Factura1;
 
 public interface IFacturaRepository {
-	public List<Factura> buscarFacturaInnerJoin(Integer cantidadDetalle);
-	public List<Factura> buscarFacturaInnerJoin();
-	public List<Factura> buscarFacturaOuterLeftJoin(Integer cantidadDetalle);
-	public List<Factura> buscarFacturaOuterLeftJoin();
-	public List<Factura> buscarFacturaOuterRightJoin(Integer cantidadDetalle);
-	public List<Factura> buscarFacturaOuterRightJoin();
+	public List<Factura1> buscarFacturaInnerJoin(Integer cantidadDetalle);
+	public List<Factura1> buscarFacturaInnerJoin();
+	public List<Factura1> buscarFacturaOuterLeftJoin(Integer cantidadDetalle);
+	public List<Factura1> buscarFacturaOuterLeftJoin();
+	public List<Factura1> buscarFacturaOuterRightJoin(Integer cantidadDetalle);
+	public List<Factura1> buscarFacturaOuterRightJoin();
 	
-	public List<Factura> buscarFacturaJoinWhere(Integer cantidadDetalle);
-	public List<Factura> buscarFacturaJoinFetch(Integer cantidadDetalle);
+	public List<Factura1> buscarFacturaJoinWhere(Integer cantidadDetalle);
+	public List<Factura1> buscarFacturaJoinFetch(Integer cantidadDetalle);
 }

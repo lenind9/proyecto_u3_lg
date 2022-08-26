@@ -1,7 +1,11 @@
 package com.uce.edu.demo.supermaxi.service;
 
-import com.uce.edu.demo.supermaxi.repository.modelo.Factura2;
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.uce.edu.demo.supermaxi.repository.modelo.Factura;
 
 public interface IFacturaService {
-	public Factura2 buscarPorNumero(String numero);
+	public BigDecimal procesarFactura(String cedula, String numeroFactura, List<String> codigoBarras);
+	public Factura buscarPorNumero(String numero);
 }

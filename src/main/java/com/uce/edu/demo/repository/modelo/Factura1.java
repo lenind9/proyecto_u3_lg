@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "factura")
-public class Factura {
+public class Factura1 {
 	
 	@Id
 	@Column(name = "fact_id")
@@ -32,7 +32,7 @@ public class Factura {
 	
 	//@OneToMany(mappedBy = "factura", cascade  = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OneToMany(mappedBy = "factura", cascade  = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<DetalleFactura> detalles;
+	private List<DetalleFactura1> detalles;
 	
 	//SET y GET
 	public Integer getId() {
@@ -59,11 +59,11 @@ public class Factura {
 		this.numero = numero;
 	}
 
-	public List<DetalleFactura> getDetalles() {
+	public List<DetalleFactura1> getDetalles() {
 		return detalles;
 	}
 
-	public void setDetalles(List<DetalleFactura> detalles) {
+	public void setDetalles(List<DetalleFactura1> detalles) {
 		this.detalles = detalles;
 	}
 	

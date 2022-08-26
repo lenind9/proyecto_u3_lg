@@ -30,7 +30,7 @@ public class FacturaElectronica {
 	private BigDecimal monto;
 	
 	@Column(name = "fael_numero_items")
-	private Integer numeroItems;
+	private Integer numeroItem;
 	
 	
 	//SET y GET
@@ -66,12 +66,12 @@ public class FacturaElectronica {
 		this.monto = monto;
 	}
 
-	public Integer getNumeroItems() {
-		return numeroItems;
+	public Integer getNumeroItem() {
+		return numeroItem;
 	}
 
-	public void setNumeroItems(Integer numeroItems) {
-		this.numeroItems = numeroItems;
+	public void setNumeroItem(Integer numeroItem) {
+		this.numeroItem = numeroItem;
 	}
 	
 }

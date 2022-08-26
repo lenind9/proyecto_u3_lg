@@ -35,7 +35,7 @@ public class Producto {
 	private Integer stock;
 	
 	@OneToMany(mappedBy = "producto")
-	private List<DetalleFactura2> detalles;
+	private List<DetalleFactura> detalles;
 	
 	//SET y GET
 	public Integer getId() {
@@ -62,11 +62,11 @@ public class Producto {
 		this.precio = precio;
 	}
 
-	public List<DetalleFactura2> getDetalles() {
+	public List<DetalleFactura> getDetalles() {
 		return detalles;
 	}
 
-	public void setDetalles(List<DetalleFactura2> detalles) {
+	public void setDetalles(List<DetalleFactura> detalles) {
 		this.detalles = detalles;
 	}
 

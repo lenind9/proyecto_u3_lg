@@ -24,11 +24,11 @@ public class Cliente {
 	@Column(name = "clie_cedula")
 	private String cedula;
 	
-	@Column(name = "clie_nombre")
-	private String nombre;
+	@Column(name = "clie_numero_tarjeta")
+	private String numeroTarjeta;
 	
-	@OneToMany(mappedBy = "clientes")
-	private List<Factura2> facturas;
+	@OneToMany(mappedBy = "cliente")
+	private List<Factura> facturas;
 	
 	//SET y GET
 	public Integer getId() {
@@ -39,14 +39,6 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public String getCedula() {
 		return cedula;
 	}
@@ -55,11 +47,19 @@ public class Cliente {
 		this.cedula = cedula;
 	}
 
-	public List<Factura2> getFacturas() {
+	public String getNumeroTarjeta() {
+		return numeroTarjeta;
+	}
+
+	public void setNumeroTarjeta(String numeroTarjeta) {
+		this.numeroTarjeta = numeroTarjeta;
+	}
+
+	public List<Factura> getFacturas() {
 		return facturas;
 	}
 
-	public void setFacturas(List<Factura2> facturas) {
+	public void setFacturas(List<Factura> facturas) {
 		this.facturas = facturas;
 	}
 	

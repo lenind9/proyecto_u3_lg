@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "detalle")
-public class DetalleFactura {
+public class DetalleFactura1 {
 	
 	@Id
 	@Column(name = "deta_id")
@@ -30,7 +30,7 @@ public class DetalleFactura {
 	
 	@ManyToOne
 	@JoinColumn(name = "deta_fact_id")
-	private Factura factura;
+	private Factura1 factura;
 	
 	@Override
 	public String toString() {
@@ -62,11 +62,11 @@ public class DetalleFactura {
 		this.subtotal = subtotal;
 	}
 
-	public Factura getFactura() {
+	public Factura1 getFactura() {
 		return factura;
 	}
 
-	public void setFactura(Factura factura) {
+	public void setFactura(Factura1 factura) {
 		this.factura = factura;
 	}
 	

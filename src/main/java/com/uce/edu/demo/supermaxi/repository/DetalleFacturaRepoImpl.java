@@ -7,7 +7,7 @@ import javax.transaction.Transactional.TxType;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.supermaxi.repository.modelo.DetalleFactura2;
+import com.uce.edu.demo.supermaxi.repository.modelo.DetalleFactura;
 
 @Repository
 @Transactional
@@ -17,20 +17,20 @@ public class DetalleFacturaRepoImpl implements IDetalleFacturaRepository {
 	private EntityManager entityManager;
 
 	@Override
-	public void insertar(DetalleFactura2 detalle) {
+	public void insertar(DetalleFactura detalle) {
 		// TODO Auto-generated method stub
 		this.entityManager.persist(detalle);
 	}
 
 	@Override
 	@Transactional(value = TxType.NOT_SUPPORTED)
-	public DetalleFactura2 buscar(Integer id) {
+	public DetalleFactura buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.entityManager.find(DetalleFactura2.class, id);
+		return this.entityManager.find(DetalleFactura.class, id);
 	}
 
 	@Override
-	public void actualizar(DetalleFactura2 detalle) {
+	public void actualizar(DetalleFactura detalle) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(detalle);
 	}

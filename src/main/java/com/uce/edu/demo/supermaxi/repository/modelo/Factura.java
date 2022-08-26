@@ -17,8 +17,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "factura2")
-public class Factura2 {
+@Table(name = "factura")
+public class Factura {
 	
 	@Id
 	@Column(name = "fact_id")
@@ -32,12 +32,12 @@ public class Factura2 {
 	@Column(name = "fact_numero")
 	private String numero;
 	
-	@OneToMany(mappedBy = "facturas", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<DetalleFactura2> detalles;
+	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<DetalleFactura> detalles;
 	
 	@ManyToOne
 	@JoinColumn(name = "fact_clie_id")
-	private Cliente clientes;
+	private Cliente cliente;
 	
 	//SET y GET
 	public Integer getId() {
@@ -64,20 +64,20 @@ public class Factura2 {
 		this.numero = numero;
 	}
 
-	public List<DetalleFactura2> getDetalles() {
+	public List<DetalleFactura> getDetalles() {
 		return detalles;
 	}
 
-	public void setDetalles(List<DetalleFactura2> detalles) {
+	public void setDetalles(List<DetalleFactura> detalles) {
 		this.detalles = detalles;
 	}
 
-	public Cliente getClientes() {
-		return clientes;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClientes(Cliente clientes) {
-		this.clientes = clientes;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 }
