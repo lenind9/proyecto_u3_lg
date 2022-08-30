@@ -1,5 +1,12 @@
 package com.uce.edu.demo.service.funcional.tarea;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
 import org.apache.log4j.Logger;
 
 import com.uce.edu.demo.service.funcional.tarea.MainInterfacesFuncionales;
@@ -23,6 +30,11 @@ public class MainInterfacesFuncionales {
 		
 		//Metodos High Order
 		String valorHO = metodosHO.consumirSupplier(() -> "Supplier High Order");
+		
+		String valorHO1 = metodosHO.consumirSupplier(() -> {
+			String valorConsultado = "1564745"; 
+			return valorConsultado;
+		});
 		LOG.info("HO Supplier: " + valorHO);
 		
 		//CONSUMER
