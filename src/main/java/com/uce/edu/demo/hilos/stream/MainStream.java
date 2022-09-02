@@ -1,4 +1,4 @@
-package com.uce.edu.demo.hilos.steam;
+package com.uce.edu.demo.hilos.stream;
 
 import java.util.ArrayList;
 import java.util.List;
